@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const exampleImageBtn = document.getElementById('exampleImageBtn');
     const startVerifyingBtn = document.getElementById('startVerifyingBtn');
     const learnMoreBtn = document.getElementById('learnMoreBtn');
-    
+
     let loading = false;
 
     // Helper function for loading state
@@ -95,81 +95,79 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Function to handle image verification
-    // Function to handle image verification
     async function handleCheckImage() {
-    if (loading) return;
-    const imageFile = document.getElementById('imageInput').files[0];
-
-    if (!imageFile) {
-        alert('Please select an image to analyze!');
-        return;
-    }
-
-    setLoading(true, 'image');
-    imageResult.innerHTML = '<div class="text-center text-gray-500 py-8"><div class="spinner mx-auto"></div><p class="mt-2">Uploading image...</p></div>';
-
-    try {
-        // Step 1: Upload the image file to the backend
-        const formData = new FormData();
-        formData.append('image', imageFile);
-
-        const uploadResponse = await fetch('/api/upload-image', {
-            method: 'POST',
-            body: formData
-        });
-        const uploadData = await uploadResponse.json();
-
-        if (!uploadResponse.ok) {
-            throw new Error(uploadData.error || 'Failed to upload image.');
+        if (loading) return;
+        const imageFile = document.getElementById('imageInput').files[0];
+        
+        if (!imageFile) {
+            alert('Please select an image to analyze!');
+            return;
         }
 
-        const imageUrl = uploadData.imageUrl;
+        setLoading(true, 'image');
+        imageResult.innerHTML = '<div class="text-center text-gray-500 py-8"><div class="spinner mx-auto"></div><p class="mt-2">Uploading image...</p></div>';
 
-        // Step 2: Use the returned URL to verify the image with SerpAI
-        imageResult.innerHTML = '<div class="text-center text-gray-500 py-8"><div class="spinner mx-auto"></div><p class="mt-2">Analyzing image...</p></div>';
+        try {
+            // Step 1: Upload the image file to the backend
+            const formData = new FormData();
+            formData.append('image', imageFile);
 
-        const verificationResponse = await fetch('/api/verify-image', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ imageUrl })
-        });
+            const uploadResponse = await fetch('/api/upload-image', {
+                method: 'POST',
+                body: formData
+            });
+            const uploadData = await uploadResponse.json();
 
-        const verificationData = await verificationResponse.json();
+            if (!uploadResponse.ok) {
+                throw new Error(uploadData.error || 'Failed to upload image.');
+            }
 
-        if (verificationResponse.ok) {
-        // Adapt this part based on the actual SerpAI response
-        imageResult.innerHTML = `
-            <div class="bg-white border border-gray-200 rounded-xl p-6 shadow-sm">
-                <h4 class="text-lg font-bold text-gray-900 mb-4 flex items-center">
-                    <span class="text-green-500 mr-2">✅</span> Image Analysis Report
-                </h4>
-                <pre class="bg-gray-100 p-4 rounded-md text-sm whitespace-pre-wrap">${JSON.stringify(verificationData.result.visual_matches, null, 2)}</pre>
-                <div class="mt-4">
-                    <p class="text-gray-700 font-semibold">Verification Score: ${verificationData.result.visual_matches.length > 0 ? "Found on " + verificationData.result.visual_matches.length + " sites" : "Not found online"}</p>
+            const imageUrl = uploadData.imageUrl;
+
+            // Step 2: Use the returned URL to verify the image with SerpAI
+            imageResult.innerHTML = '<div class="text-center text-gray-500 py-8"><div class="spinner mx-auto"></div><p class="mt-2">Analyzing image...</p></div>';
+
+            const verificationResponse = await fetch('/api/verify-image', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ imageUrl })
+            });
+
+            const verificationData = await verificationResponse.json();
+
+            if (verificationResponse.ok) {
+                imageResult.innerHTML = `
+                    <div class="bg-white border border-gray-200 rounded-xl p-6 shadow-sm">
+                        <h4 class="text-lg font-bold text-gray-900 mb-4 flex items-center">
+                            <span class="text-green-500 mr-2">✅</span> Image Analysis Report
+                        </h4>
+                        <pre class="bg-gray-100 p-4 rounded-md text-sm whitespace-pre-wrap">${JSON.stringify(verificationData.result.visual_matches, null, 2)}</pre>
+                        <div class="mt-4">
+                            <p class="text-gray-700 font-semibold">Verification Score: ${verificationData.result.visual_matches.length > 0 ? "Found on " + verificationData.result.visual_matches.length + " sites" : "Not found online"}</p>
+                        </div>
+                    </div>
+                `;
+            } else {
+                imageResult.innerHTML = `
+                    <div class="bg-red-50 border border-red-200 rounded-xl p-4">
+                        <h4 class="text-red-800 font-bold mb-2">❌ Error</h4>
+                        <p class="text-red-700">${verificationData.error || 'An error occurred during analysis.'}</p>
+                    </div>
+                `;
+            }
+        } catch (error) {
+            imageResult.innerHTML = `
+                <div class="bg-red-50 border border-red-200 rounded-xl p-4">
+                    <h4 class="text-red-800 font-bold mb-2">❌ Error</h4>
+                    <p class="text-red-700">${error.message || 'An unexpected error occurred.'}</p>
                 </div>
-            </div>
-        `;
-    } else {
-        imageResult.innerHTML = `
-            <div class="bg-red-50 border border-red-200 rounded-xl p-4">
-                <h4 class="text-red-800 font-bold mb-2">❌ Error</h4>
-                <p class="text-red-700">${verificationData.error || 'An error occurred during analysis.'}</p>
-            </div>
-        `;
+            `;
+            console.error('Fetch error:', error);
+        } finally {
+            setLoading(false, 'image');
+        }
     }
-    } catch (error) {
-        imageResult.innerHTML = `
-            <div class="bg-red-50 border border-red-200 rounded-xl p-4">
-                <h4 class="text-red-800 font-bold mb-2">❌ Error</h4>
-                <p class="text-red-700">${error.message || 'An unexpected error occurred.'}</p>
-            </div>
-        `;
-        console.error('Fetch error:', error);
-    } finally {
-        setLoading(false, 'image');
-    }
-}
-
+    
     // Helper functions for UI
     function switchMode(mode) {
         document.querySelectorAll('.tab-button').forEach(tab => {
@@ -203,13 +201,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Since SerpAI requires a public URL, we'll use a placeholder for the example
     function useExampleImage() {
-        const exampleImageUrl = 'https://picsum.photos/800/600';
-        imageInput.value = exampleImageUrl;
-        // Optionally, show a preview
-        imagePreview.classList.remove('hidden');
-        dropContent.classList.add('hidden');
-        previewImg.src = exampleImageUrl;
-        fileName.textContent = 'Example Image URL';
+        // You can't use a local file for the example, as the API can't access it.
+        alert('Please use a real image file for this function.');
     }
 
     // Event listeners
@@ -230,23 +223,28 @@ document.addEventListener('DOMContentLoaded', () => {
     startVerifyingBtn.addEventListener('click', () => smoothScrollTo('verify'));
     learnMoreBtn.addEventListener('click', () => smoothScrollTo('features'));
 
-    // Handle file uploads (You can modify this to handle base64 encoding if needed)
+    // Handle file uploads
     dropZone.addEventListener('click', () => imageInput.click());
-    dropZone.addEventListener('dragover', (e) => { e.preventDefault(); dropZone.classList.add('border-blue-400'); });
-    dropZone.addEventListener('dragleave', () => { dropZone.classList.remove('border-blue-400'); });
+    dropZone.addEventListener('dragover', (e) => { 
+        e.preventDefault(); 
+        dropZone.classList.add('border-blue-400'); 
+    });
+    
+    dropZone.addEventListener('dragleave', () => { 
+        dropZone.classList.remove('border-blue-400'); 
+    });
+    
     dropZone.addEventListener('drop', (e) => {
         e.preventDefault();
         dropZone.classList.remove('border-blue-400');
         const file = e.dataTransfer.files[0];
         if (file) {
-            imageInput.value = ''; // Clear the text input
             const reader = new FileReader();
             reader.onload = (e) => {
                 imagePreview.classList.remove('hidden');
                 dropContent.classList.add('hidden');
                 previewImg.src = e.target.result;
                 fileName.textContent = file.name;
-                // You would need to handle sending this file data to the backend
             };
             reader.readAsDataURL(file);
         }
@@ -255,7 +253,6 @@ document.addEventListener('DOMContentLoaded', () => {
     imageInput.addEventListener('change', (e) => {
         const file = e.target.files[0];
         if (file) {
-            // Handle file input for local uploads
             const reader = new FileReader();
             reader.onload = (e) => {
                 imagePreview.classList.remove('hidden');
