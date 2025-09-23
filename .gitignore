@@ -1,0 +1,8 @@
+# Create the file in your terminal
+# For Windows
+echo node_modules/ > .gitignore
+echo .env >> .gitignore
+
+# For macOS/Linux
+echo "node_modules/" >> .gitignore
+echo ".env" >> .gitignore

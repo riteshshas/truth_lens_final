@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TruthLens - AI-Powered Content Verification Platform</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="scroll-smooth">
+    <nav class="fixed top-0 w-full bg-white/95 backdrop-blur-md z-50 border-b border-gray-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center">
+                    <div class="text-2xl font-bold">
+                        <span class="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">Truth</span>Lens
+                    </div>
+                </div>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#home" class="nav-link text-gray-700 hover:text-blue-600 px-3 py-2 text-sm font-medium">Home</a>
+                    <a href="#features" class="nav-link text-gray-700 hover:text-blue-600 px-3 py-2 text-sm font-medium">Features</a>
+                    <a href="#verify" class="nav-link text-gray-700 hover:text-blue-600 px-3 py-2 text-sm font-medium">Verify</a>
+                    <a href="#about" class="nav-link text-gray-700 hover:text-blue-600 px-3 py-2 text-sm font-medium">About</a>
+                    <a href="#contact" class="nav-link text-gray-700 hover:text-blue-600 px-3 py-2 text-sm font-medium">Contact</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <section id="home" class="hero-gradient min-h-screen flex items-center relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center">
+                <h1 class="text-4xl md:text-5xl font-bold text-white mb-6 fade-in">
+                    Verify Content with <span class="bg-gradient-to-r from-yellow-300 to-orange-400 bg-clip-text text-transparent">AI Power</span>
+                </h1>
+                <p class="text-xl md:text-2xl text-blue-100 mb-8 max-w-3xl mx-auto leading-relaxed fade-in">
+                    Advanced AI-powered content verification platform. Analyze text and images for authenticity, credibility, and factual accuracy using cutting-edge machine learning.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center fade-in">
+                    <button id="startVerifyingBtn" class="btn-primary text-white px-8 py-4 rounded-lg font-semibold text-lg">
+                        Start Verifying Now
+                    </button>
+                    <button id="learnMoreBtn" class="bg-white/20 text-white px-8 py-4 rounded-lg font-semibold text-lg hover:bg-white/30 transition-all">
+                        Learn More
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="features" class="section-padding bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+                    Powerful Verification Features
+                </h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Our AI-powered platform provides comprehensive content analysis with industry-leading accuracy and speed.
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="glass-card rounded-2xl p-8 hover-lift">
+                    <div class="feature-icon text-4xl mb-4">📝</div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-4">Text Analysis</h3>
+                    <p class="text-gray-600 leading-relaxed">
+                        Advanced NLP algorithms analyze text for factual accuracy, bias detection, and credibility scoring with real-time fact-checking.
+                    </p>
+                </div>
+                
+                <div class="glass-card rounded-2xl p-8 hover-lift">
+                    <div class="feature-icon text-4xl mb-4">🖼️</div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-4">Image Verification</h3>
+                    <p class="text-gray-600 leading-relaxed">
+                        Detect deepfakes, manipulated images, and verify authenticity using cutting-edge computer vision technology.
+                    </p>
+                </div>
+                
+                <div class="glass-card rounded-2xl p-8 hover-lift">
+                    <div class="feature-icon text-4xl mb-4">⚡</div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-4">Real-time Results</h3>
+                    <p class="text-gray-600 leading-relaxed">
+                        Get instant verification results with detailed analysis reports and confidence scores in under 3 seconds.
+                    </p>
+                </div>
+                
+                <div class="glass-card rounded-2xl p-8 hover-lift">
+                    <div class="feature-icon text-4xl mb-4">🔒</div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-4">Privacy First</h3>
+                    <p class="text-gray-600 leading-relaxed">
+                        Your content is processed securely with end-to-end encryption. We never store or share your data.
+                    </p>
+                </div>
+                
+                <div class="glass-card rounded-2xl p-8 hover-lift">
+                    <div class="feature-icon text-4xl mb-4">📊</div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-4">Detailed Reports</h3>
+                    <p class="text-gray-600 leading-relaxed">
+                        Comprehensive analysis with source verification, confidence metrics, and actionable insights.
+                    </p>
+                </div>
+                
+                <div class="glass-card rounded-2xl p-8 hover-lift">
+                    <div class="feature-icon text-4xl mb-4">🌐</div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-4">Multi-language</h3>
+                    <p class="text-gray-600 leading-relaxed">
+                        Support for 50+ languages with cultural context awareness and region-specific fact-checking.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="verify" class="section-padding bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+                    Try Our Verification Tool
+                </h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Experience the power of AI-driven content verification. Upload text or images to get instant analysis.
+                </p>
+            </div>
+
+            <div class="flex justify-center mb-12">
+                <div class="bg-gray-100 rounded-2xl p-2 flex space-x-2">
+                    <button id="textTab" class="tab-button px-8 py-4 rounded-xl text-gray-700 font-semibold transition-all duration-300 bg-white shadow-sm">
+                        📝 Text Analysis
+                    </button>
+                    <button id="imageTab" class="tab-button px-8 py-4 rounded-xl text-gray-700 font-semibold transition-all duration-300">
+                        🖼️ Image Analysis
+                    </button>
+                </div>
+            </div>
+
+            <div id="textMode" class="max-w-4xl mx-auto">
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div class="glass-card rounded-2xl p-8">
+                        <h3 class="text-2xl font-bold text-gray-900 mb-6 flex items-center">
+                            <span class="mr-3">✍️</span> Enter Text to Verify
+                        </h3>
+                        <textarea 
+                            id="textInput"
+                            placeholder="Paste your text here for AI-powered verification..."
+                            class="w-full h-40 p-4 rounded-xl border-2 border-gray-200 focus:border-blue-500 focus:outline-none resize-none transition-all duration-300"
+                        ></textarea>
+                        <div class="flex space-x-3 mt-6">
+                            <button id="checkTextBtn" class="flex-1 btn-primary text-white py-3 px-6 rounded-xl font-semibold flex items-center justify-center">
+                                <span id="textBtnText">🔍 Analyze Text</span>
+                                <div id="textSpinner" class="spinner mx-auto hidden"></div>
+                            </button>
+                            <button id="exampleTextBtn" class="bg-gray-100 text-gray-700 py-3 px-6 rounded-xl font-semibold hover:bg-gray-200 transition-all">
+                                📄 Use Example
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="glass-card rounded-2xl p-8">
+                        <h3 class="text-2xl font-bold text-gray-900 mb-6 flex items-center">
+                            <span class="mr-3">📊</span> Analysis Results
+                        </h3>
+                        <div id="textResult" class="min-h-40 p-4 rounded-xl bg-gray-50 border border-gray-200">
+                            <div class="text-center text-gray-500 py-8">
+                                Results will appear here after analysis...
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="imageMode" class="max-w-4xl mx-auto hidden">
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div class="glass-card rounded-2xl p-8">
+                        <h3 class="text-2xl font-bold text-gray-900 mb-6 flex items-center">
+                            <span class="mr-3">🖼️</span> Upload Image to Verify
+                        </h3>
+                        
+                        <div id="dropZone" class="border-2 border-dashed border-gray-300 rounded-xl p-8 text-center transition-all duration-300 hover:border-blue-400 cursor-pointer">
+                            <div id="dropContent">
+                                <div class="text-4xl mb-4">📁</div>
+                                <p class="text-gray-600 mb-4">Drop an image here or click to browse</p>
+                                <input type="file" id="imageInput" accept="image/*" class="hidden">
+                                <button class="bg-blue-500 hover:bg-blue-600 text-white py-2 px-6 rounded-lg transition-colors">
+                                    Choose File
+                                </button>
+                            </div>
+                            <div id="imagePreview" class="hidden">
+                                <img id="previewImg" class="max-w-full max-h-64 mx-auto rounded-lg shadow-lg">
+                                <p id="fileName" class="text-gray-700 mt-4 font-medium"></p>
+                            </div>
+                        </div>
+
+                        <div class="flex space-x-3 mt-6">
+                            <button id="checkImageBtn" class="flex-1 btn-primary text-white py-3 px-6 rounded-xl font-semibold">
+                                <span id="imageBtnText">🔍 Analyze Image</span>
+                                <div id="imageSpinner" class="spinner mx-auto hidden"></div>
+                            </button>
+                            <button id="exampleImageBtn" class="bg-gray-100 text-gray-700 py-3 px-6 rounded-xl font-semibold hover:bg-gray-200 transition-all">
+                                🎨 Use Example
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="glass-card rounded-2xl p-8">
+                        <h3 class="text-2xl font-bold text-gray-900 mb-6 flex items-center">
+                            <span class="mr-3">📊</span> Analysis Results
+                        </h3>
+                        <div id="imageResult" class="min-h-40 p-4 rounded-xl bg-gray-50 border border-gray-200 overflow-auto">
+                            <div class="text-center text-gray-500 py-8">
+                                Results will appear here after analysis...
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="section-padding bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-2 gap-16 items-center">
+                <div>
+                    <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+                        Fighting Misinformation with AI
+                    </h2>
+                    <p class="text-lg text-gray-600 mb-6 leading-relaxed">
+                        TruthLens was founded with a mission to combat the spread of misinformation in our digital age. 
+                        Our advanced AI algorithms analyze content across multiple dimensions to provide accurate, 
+                        reliable verification results.
+                    </p>
+                    <p class="text-lg text-gray-600 mb-8 leading-relaxed">
+                        Trusted by journalists, researchers, and organizations worldwide, we're committed to 
+                        promoting truth and transparency in digital content.
+                    </p>
+                    <div class="flex space-x-4">
+                        <div class="text-center">
+                            <div class="text-3xl font-bold text-blue-600">Advanced</div>
+                            <div class="text-sm text-gray-600">AI Models</div>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-3xl font-bold text-blue-600">Real-time</div>
+                            <div class="text-sm text-gray-600">Analysis</div>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-3xl font-bold text-blue-600">Secure</div>
+                            <div class="text-sm text-gray-600">Processing</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="relative">
+                    <div class="bg-gradient-to-br from-blue-500 to-purple-600 rounded-2xl p-8 text-white">
+                        <h3 class="text-2xl font-bold mb-4">Why Choose TruthLens?</h3>
+                        <ul class="space-y-3">
+                            <li class="flex items-center">
+                                <span class="mr-3">✓</span> Industry-leading accuracy
+                            </li>
+                            <li class="flex items-center">
+                                <span class="mr-3">✓</span> Real-time verification
+                            </li>
+                            <li class="flex items-center">
+                                <span class="mr-3">✓</span> Privacy-first approach
+                            </li>
+                            <li class="flex items-center">
+                                <span class="mr-3">✓</span> Multi-language support
+                            </li>
+                            <li class="flex items-center">
+                                <span class="mr-3">✓</span> Comprehensive reporting
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="section-padding bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+                    Get in Touch
+                </h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Have questions about our verification technology? Want to integrate TruthLens into your platform? We'd love to hear from you.
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="text-center">
+                    <div class="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <span class="text-2xl">📧</span>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-2">Email Us</h3>
+                    <p class="text-gray-600">contact@truthlens.ai</p>
+                </div>
+                
+                <div class="text-center">
+                    <div class="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <span class="text-2xl">💬</span>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-2">Live Chat</h3>
+                    <p class="text-gray-600">Available 24/7</p>
+                </div>
+                
+                <div class="text-center">
+                    <div class="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <span class="text-2xl">📱</span>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-2">API Access</h3>
+                    <p class="text-gray-600">Developer resources</p>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 mt-12 pt-8 text-center text-gray-400">
+                <p>&copy; 2025 TruthLens. All rights reserved. Fighting misinformation with AI.</p>
+            </div>
+        </div>
+    </footer>
+    
+    <script src="script.js"></script>
+</body>
+</html>
