@@ -93,7 +93,7 @@ document.addEventListener('DOMContentLoaded', () => {
             setLoading(false, 'text');
         }
     }
-
+    
     // Function to handle image verification
     async function handleCheckImage() {
         if (loading) return;
@@ -136,14 +136,18 @@ document.addEventListener('DOMContentLoaded', () => {
             const verificationData = await verificationResponse.json();
 
             if (verificationResponse.ok) {
+                // Here is the fix: check if visual_matches exists before accessing its length.
+                const visualMatches = verificationData.result.visual_matches || [];
+                const verificationScore = visualMatches.length > 0 ? "Found on " + visualMatches.length + " sites" : "Not found online";
+
                 imageResult.innerHTML = `
                     <div class="bg-white border border-gray-200 rounded-xl p-6 shadow-sm">
                         <h4 class="text-lg font-bold text-gray-900 mb-4 flex items-center">
                             <span class="text-green-500 mr-2">✅</span> Image Analysis Report
                         </h4>
-                        <pre class="bg-gray-100 p-4 rounded-md text-sm whitespace-pre-wrap">${JSON.stringify(verificationData.result.visual_matches, null, 2)}</pre>
+                        <pre class="bg-gray-100 p-4 rounded-md text-sm whitespace-pre-wrap">${JSON.stringify(visualMatches, null, 2)}</pre>
                         <div class="mt-4">
-                            <p class="text-gray-700 font-semibold">Verification Score: ${verificationData.result.visual_matches.length > 0 ? "Found on " + verificationData.result.visual_matches.length + " sites" : "Not found online"}</p>
+                            <p class="text-gray-700 font-semibold">Verification Score: ${verificationScore}</p>
                         </div>
                     </div>
                 `;
@@ -199,7 +203,6 @@ document.addEventListener('DOMContentLoaded', () => {
         textInputEl.value = "Scientists have discovered a new particle at the LHC that could revolutionize energy production and lead to breakthrough technologies in the next decade.";
     }
 
-    // Since SerpAI requires a public URL, we'll use a placeholder for the example
     function useExampleImage() {
         // You can't use a local file for the example, as the API can't access it.
         alert('Please use a real image file for this function.');
