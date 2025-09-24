@@ -19,11 +19,11 @@ app.use(express.json());
 const storage = multer.memoryStorage();
 const upload = multer({ storage: storage });
 
-// The image verification endpoint now handles the upload directly.
-// This simplifies the frontend, as it only needs to make one call.
-app.post('/api/verify-image', upload.single('image'), imageRouter);
-
+// Place API route handlers before the static file middleware
 app.use('/api/verify-text', textRouter);
+
+// The image verification endpoint now handles the upload and routing directly.
+app.post('/api/verify-image', upload.single('image'), imageRouter);
 
 // The static file middleware should be last to act as a fallback
 app.use(express.static(path.join(__dirname, 'public')));
