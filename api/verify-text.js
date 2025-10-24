@@ -17,10 +17,15 @@ router.post('/', async (req, res) => {
             'X-goog-api-key': geminiApiKey
         };
 
+        const prompt = `Analyze the following text for factual accuracy and credibility. Provide a clear, brief answer, and then assign a credibility score from 0 to 10 based on your analysis. Your response should be structured like this: 
+Analysis: [Your breif analysis here.]
+Credibility Score: [A number from 0 to 10.]
+Text to analyze: "${text}"`;
+
         const response = await axios.post(geminiUrl, {
             contents: [{
                 parts: [{
-                    text: text
+                    text: prompt
                 }]
             }]
         }, { headers: headers });
