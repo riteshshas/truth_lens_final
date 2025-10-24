@@ -19,7 +19,7 @@ router.post('/', async (req, res) => {
 
         const prompt = `Analyze the following text for factual accuracy and credibility. Provide a clear, brief answer, and then assign a credibility score from 0 to 10 based on your analysis. Your response should be structured like this: 
 Analysis: [Your breif analysis here.]
-Credibility Score: [A number from 0 to 10.]
+Credibility Score: ["(A number from 0 to 10)/10"]
 Text to analyze: "${text}"`;
 
         const response = await axios.post(geminiUrl, {
